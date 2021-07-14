@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import "resets";
+@import "variables";
+
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  font-family: 'Quicksand';
+  background-color: $primary-color;
+}
+
+body.bg-white {
+  background-color: #FFFFFF;
+}
+
+.flex-center {
+  @include flexCenter;
+
+  button {
+    margin-top: 1rem;
+  }
+}
+
+.welcomeHeader {
+  @include flexCenter;
+  color: $text-color-white;
+  padding: 4rem;
+  font-size: 2rem;
+}
+
+.subjectHeader {
+  @include flexCenter;
+  color: $secondary-color;
+  font-weight: weight(light-bold);
+  font-size: 60px;
+  text-align: center;
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  p{
+    font-weight: weight(medium);
+    margin-top: 1.5rem;
+    font-size: 2rem;
+    letter-spacing: 8px;
+  }
+}
+
+.logo {
+  @include flexCenter;
+  width: 100%;
+  height: 300px;
+  margin-top: -6rem;
+}
+.categoryContainer {
+  @include flexCenter;
+}
+
+.block {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  margin-top: 16rem;
+
+  .amount {
+    margin-top: 1rem;
+  }
+}
+
+.categoryBox {
+  width: 300px;
+  border: 1px solid #FFFFFF;
+  box-shadow: 6px 6px 13px -1px rgba(23, 21, 92, 0.06);
+  border-radius: 10px;
+  padding: 1.2rem;
+  color: $text-color-white;
+  font-weight: weight(medium);
+  background: none;
+}
+
+.field-container {
+  width: 300px;
+  margin-top: 1rem;
+}
+
+input.categoryBox:focus {
+  outline-width: 0;
+}
+
+.dropdown-select {
+  padding: 1.1rem;
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  background: none;
+  color: $text-color-white!important;
+  font-weight: weight(bold);
+  font-family: 'Quicksand';
+  outline: unset;
+  position: relative;
+
+
+
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+.cup {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  color: $text-color-light-orange;
+  font-weight: weight(bold);
+  font-size: 15px;
+  p {
+    margin-left: 12px;
+  }
+}
+
+.arrow {
+  width: 6%;
+  position: absolute;
+  margin: 1.4rem 0rem 0rem 16.5rem;
+}
+
+.btn {
+  border-radius: 14px;
+  width: 300px;
+  height: 70px;
+  color: $text-color-white;
+  text-transform: uppercase;
+  cursor: pointer;
+  &__main {
+    background: linear-gradient(90deg, #FFA67A 0%, #FF6065 100%);
+    margin-top: 4rem;
+    box-shadow: none;
+    font-weight: weight(bold);
+    border: unset;
+  }
+  &__secondary {
+    background-color: $third-color;
+    font-weight: weight(heavy-bold);
+    border: none;
+  }
+  &__third {
+    color: $secondary-color;
+    border: 2px solid #4953BE;
+    background-color: unset;
+    font-weight: weight(heavy-bold);
+  }
+
+}
+
+.element {
+  &__el1{
+    height: 500px;
+  }
+  &__el2{
+    height: 200px;
+    display: flex;
+    margin-top: 7rem;
+  }
+  &__el3{
+    display: flex;
+    float: right;
+    margin-top: -46rem !important;
+    height: 300px;
+  }
+  &__el4{
+    display: flex;
+    float: right;
+    margin-top: -24rem;
+    height: 350px;
+  }
+  &__el5{
+    height: 160px;
+    display: flex;
+  }
+  &__el6{
+    height: 320px;
+    display: flex;
+    float: right;
+    margin-top: -3rem;
+  }
+  &__el7{
+    height: 250px;
+    float: left;
+    margin-top: 25rem;
+  }
+  &__el8{
+    margin-right: -6rem;
+    height: 180px;
+    float: right;
+    margin-top: 30rem;
+  }
+  &__el9{
+    height: 400px;
+  }
+  &__el10{
+    height: 300px;
+    display: flex;
+    margin-top: 7rem;
+  }
+  &__el11{
+    display: flex;
+    float: right;
+    margin-top: -47rem !important;
+    height: 360px;
+  }
+  &__el12{
+    display: flex;
+    float: right;
+    margin-top: -20rem !important;
+    height: 300px;
+  }
+}
+
+.globalContainer {
+  margin-top: -50rem;
+}
+
+.position-relative {
+  position: relative;
+}
+
+
+.questionBlock {
+  margin: 15rem 0rem 3rem 0rem;
+  text-align: center;
+  color: $secondary-color;
+}
+
+.scoreBlock {
+  position: absolute;
+  margin-top: -47rem;
+  @include flexCenter;
+  width: 100%;
+}
+
+.scoreIcon {
+  padding: 1rem;
+}
+
+.titleContainer {
+    text-align: center;
+    margin: 0 auto;
+    padding: 1.5rem;
+
+}
+
+
+
+
