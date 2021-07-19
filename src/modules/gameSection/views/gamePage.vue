@@ -7,32 +7,23 @@
     <div class="position-relative">
       <div class="subjectHeader">
         <span>Entertainment: <br> Videogames</span>
-        <p>level 1</p>
         <div class="line"></div>
       </div>
 
       <section class="flex-center">
-        <!-- transition -->
-<!--        <transition :duration="{ enter: 500, leave: 300 }" enter-active-class="animated zoomIn" leave-active-class="animated zoomOut" mode="out-in">-->
-          <ul class="questionBlock"
-              v-for="(question, i) in questions"
-              :key="i">
-<!--            <p>{{'level ' + (i+1)}}</p>-->
+          <ul class="questionBlock" v-for="(question, i) in questions" :key="i">
             <div v-if="i === currentQuestion">
+              <p class="subjectHeader subjectHeader__p">{{'level ' + (i+1)}}</p>
               <li class="titleContainer title">
                 {{question.question}}
               </li>
-              <span v-for="(incorrect_answers, j) in question.incorrect_answers" :key="j">
-                <button class="quiz-question-button" v-on:click="goToNextQuestion()">
-                {{incorrect_answers}}
+              <span v-for="option in allAnswers[i]" :key="option">
+                <button class="quiz-question-button" v-on:click="goToNextQuestion(option, question.question)">
+                  {{option}}
                 </button>
               </span>
-              <button class="quiz-question-button" v-on:click="goToNextQuestion()">
-                {{question.correct_answer}}
-              </button>
             </div>
           </ul>
-<!--        </transition>-->
       </section>
 
     </div>
@@ -50,29 +41,57 @@ import {StartGameForm} from "@/modules/welcomeSection/data/gameData";
 export default class Game extends Vue {
 
   public questions = [];
+  public option = [];
   public currentQuestion = 0;
+  public allQuestions = [];
+  public incorrectCorrectAnswers = [];
+  public allAnswers = [];
+  private rightAnswersCount = 0;
+  private answersCorrectness = [];
   public startGameForm: StartGameForm = {
     amount: localStorage.getItem('amount') || '{}',
-    selectedDifficulty: localStorage.getItem('selectedDifficulty') || '{}',
-
+    selectedDifficulty: localStorage.getItem('selectedDifficulty') || '{}'
 }
+
 
   public startGame() {
     welcomeService.startGame(this.startGameForm)
         .then((res) => {
-          console.log(res)
           this.questions = res.data.results;
-
+          this.questions.forEach(question => {
+            this.incorrectCorrectAnswers =
+                question.incorrect_answers;
+            this.incorrectCorrectAnswers.push(question.correct_answer);
+            this.incorrectCorrectAnswers.sort();
+            this.allAnswers.push(this.incorrectCorrectAnswers);
+          });
         })
         .catch((error) => {
           this.$store.commit('app/showMessage', ['error', error.response.data.message]);
         });
   }
 
-  public goToNextQuestion(){
+  public goToNextQuestion(option:string, question:string){
+    this.allQuestions.push(question);
+    console.log(this.allQuestions);
+    if (option === this.questions[this.currentQuestion].correct_answer){
+      this.rightAnswersCount++;
+      this.answersCorrectness.push(true);
+      console.log("Right");
+    }
+    else {
+      this.answersCorrectness.push(false);
+      console.log("Wrong");
+    }
     this.currentQuestion++;
     if (this.currentQuestion > this.questions.length-1){
-      this.$router.push('/result')
+      localStorage.setItem('allQuestions', JSON.stringify(this.allQuestions));
+      localStorage.setItem('answersCorrectness', JSON.stringify(this.answersCorrectness));
+      localStorage.setItem('score', this.rightAnswersCount);
+      localStorage.setItem('questionsAmount', this.currentQuestion);
+      this.$router.push('/result');
+      // console.log(this.allQuestions);
+      // <router-link :to="{path: '/result', query: { allQuestions: allQuestions }}"></router-link>
     }
   }
 
@@ -87,10 +106,9 @@ export default class Game extends Vue {
     background-color: #FFFFFF;
   }
 
-
   .quiz-question-button {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     border-radius: 14px;
     background: #424A9E;;
     border: unset;
@@ -100,4 +118,5 @@ export default class Game extends Vue {
     transition: border-color 0.5s, background 0.5s;
     outline: none;
   }
+
 </style>

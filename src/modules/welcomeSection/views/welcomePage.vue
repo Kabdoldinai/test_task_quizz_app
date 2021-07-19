@@ -52,8 +52,8 @@ export default class Home extends Vue {
 
 
   public startGame() {
-    localStorage.setItem('amount', this.amount);
     localStorage.setItem('selectedDifficulty', this.selectedDifficulty);
+    localStorage.setItem('amount', this.amount);
     this.$router.push('/game_mode?amount='+ this.amount+'&difficulty='+this.selectedDifficulty);
   }
 }

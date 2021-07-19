@@ -13,13 +13,12 @@ export const configParams: Config = {
 const config = {
     baseURL: configParams.baseURl,
 };
-const triviaApi = axios.create(config);
+const gameApi = axios.create(config);
 
 export const welcomeService = {
 
-
     startGame(startGameForm: StartGameForm) {
-        return triviaApi.post('?amount=' + startGameForm.amount + '&' + 'difficulty=' + startGameForm.selectedDifficulty);
+        return gameApi.post('?amount=' + startGameForm.amount + '&' + 'difficulty=' + startGameForm.selectedDifficulty);
     },
 
 }

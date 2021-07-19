@@ -17,7 +17,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/result',
     name: 'Result',
-    component: () => import('./modules/resultSection/views/resultPage.vue'),
+    component: () => import('./modules/resultSection/views/resultPage.vue')
   }
 ]
 
@@ -28,3 +28,5 @@ const router = new VueRouter({
 })
 
 export default router
+
+

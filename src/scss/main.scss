@@ -47,9 +47,9 @@ body.bg-white {
   top: 0px;
   left: 0px;
   width: 100%;
-  p{
-    font-weight: weight(medium);
-    margin-top: 1.5rem;
+  &__p {
+    font-weight: weight(regular);
+    margin-top: 10.5rem;
     font-size: 2rem;
     letter-spacing: 8px;
   }
@@ -87,12 +87,38 @@ body.bg-white {
   background: none;
 }
 
+.wrongBox {
+  width: 650px;
+  //box-shadow: 6px 6px 13px -1px rgba(23, 21, 92, 0.06);
+  border-radius: 14px;
+  padding: 1.9rem;
+  color: $fourth-color;
+  font-weight: weight(medium);
+  background: #FFDBDB;
+  margin: 0.3rem;
+}
+
+.correctBox {
+  border: 1px solid #FFFFFF;
+  width: 650px;
+  //box-shadow: 6px 6px 13px -1px rgba(23, 21, 92, 0.06);
+  border-radius: 14px;
+  padding: 1.9rem;
+  color: $fourth-color;
+  font-weight: weight(medium);
+  background: #FFFBFA;
+  margin: 0.3rem;
+}
+
 .field-container {
   width: 300px;
   margin-top: 1rem;
 }
 
 input.categoryBox:focus {
+  outline-width: 0;
+}
+input.questionCorrectBox:focus {
   outline-width: 0;
 }
 
@@ -227,6 +253,11 @@ select {
     margin-top: -20rem !important;
     height: 300px;
   }
+  &__el13{
+    display: flex;
+    float: right;
+    padding-left: 2rem;
+  }
 }
 
 .globalContainer {
@@ -246,9 +277,12 @@ select {
 
 .scoreBlock {
   position: absolute;
-  margin-top: -47rem;
+  margin-top: -49rem;
+  color: $text-color-white;
+  font-weight: weight(medium);
   @include flexCenter;
   width: 100%;
+  margin-left: -1rem;
 }
 
 .scoreIcon {
@@ -260,6 +294,12 @@ select {
     margin: 0 auto;
     padding: 1.5rem;
 
+}
+
+.scoreTxt {
+  color: $text-color-dark-orange;
+  font-size: 24px;
+  font-weight: weight(medium);
 }
 
 
